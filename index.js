@@ -98,3 +98,18 @@ var finances = [
 var totalMonths = finances.length;
 console.log(totalMonths);
 
+var amountTotal = 0;
+
+for (var i = 0; i < finances.length; i++) {
+    for (var j = 0; j < finances[i].length; j++) {
+        if (typeof finances[i][j] !== 'string') {
+            console.log(finances[i][j]);
+            var amountTotal = amountTotal + (finances[i][j]);
+        }
+
+    }
+
+}
+
+
+console.log(amountTotal);
