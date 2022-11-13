@@ -99,12 +99,16 @@ var totalMonths = finances.length;
 console.log(totalMonths);
 
 var amountTotal = 0;
+var onlyNumbers = []
+var monthlyChanges = [];
 
 for (var i = 0; i < finances.length; i++) {
     for (var j = 0; j < finances[i].length; j++) {
         if (typeof finances[i][j] !== 'string') {
+            onlyNumbers.push(finances[i][j])
             console.log(finances[i][j]);
-            var amountTotal = amountTotal + (finances[i][j]);
+            amountTotal = amountTotal + (finances[i][j]);
+
         }
 
     }
@@ -112,4 +116,7 @@ for (var i = 0; i < finances.length; i++) {
 }
 
 
+
+console.log(onlyNumbers);
 console.log(amountTotal);
+console.log(monthlyChanges);
