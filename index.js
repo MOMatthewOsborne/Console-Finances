@@ -115,6 +115,10 @@ for (var i = 0; i < finances.length; i++) {
 
 }
 
+for (var k = 1; k < onlyNumbers.length; k++) {
+    monthlyChanges.push(onlyNumbers[k] - onlyNumbers[k - 1]);
+}
+
 
 
 console.log(onlyNumbers);
