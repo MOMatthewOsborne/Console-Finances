@@ -128,7 +128,9 @@ for (var i = 1; i < finances.length; i++) {
 
 for (var k = 1; k < onlyNumbers.length; k++) {
     monthlyChanges.push(onlyNumbers[k] - onlyNumbers[k - 1]);
+
 }
+
 // for (var m = 1; m < monthlyChanges.length; m++) {
 //     monthlyChangesArray.push(monthlyChanges[m] - monthlyChanges[m - 1]);
 //     monthlyChangesAmount = monthlyChangesAmount + (monthlyChangesArray[m]);
@@ -142,3 +144,11 @@ console.log(amountTotal);
 console.log(monthlyChanges);
 console.log(monthlyChangesArray);
 console.log(monthlyChangesAmount / 86);
+console.log(Math.max(...monthlyChanges));
+console.log(Math.min(...monthlyChanges));
+var highestIndex = monthlyChanges.indexOf(1926159);
+console.log(highestIndex);
+var lowestIndex = monthlyChanges.indexOf(-2196167);
+console.log(lowestIndex);
+console.log(finances[1 + highestIndex]);
+console.log(finances[1 + lowestIndex]);
