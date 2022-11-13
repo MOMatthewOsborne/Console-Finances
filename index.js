@@ -100,7 +100,11 @@ console.log(totalMonths);
 
 var amountTotal = 0;
 var onlyNumbers = []
+// An array with the monthly changes
 var monthlyChanges = [];
+// AN array with the changes in monthly
+var monthlyChangesArray = [];
+var monthlyChangesAmount = 0;
 
 for (var i = 0; i < finances.length; i++) {
     for (var j = 0; j < finances[i].length; j++) {
@@ -115,12 +119,26 @@ for (var i = 0; i < finances.length; i++) {
 
 }
 
+var monthlyChangesAmount = finances[0][1];
+var difference;
+for (var i = 1; i < finances.length; i++) {
+    difference = finances[i][1] - finances[i - 1][1];
+    monthlyChangesAmount = monthlyChangesAmount + difference
+}
+
 for (var k = 1; k < onlyNumbers.length; k++) {
     monthlyChanges.push(onlyNumbers[k] - onlyNumbers[k - 1]);
 }
+// for (var m = 1; m < monthlyChanges.length; m++) {
+//     monthlyChangesArray.push(monthlyChanges[m] - monthlyChanges[m - 1]);
+//     monthlyChangesAmount = monthlyChangesAmount + (monthlyChangesArray[m]);
+
+// }
 
 
-
+console.log(totalMonths);
 console.log(onlyNumbers);
 console.log(amountTotal);
 console.log(monthlyChanges);
+console.log(monthlyChangesArray);
+console.log(monthlyChangesAmount / 86);
