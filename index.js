@@ -88,67 +88,54 @@ var finances = [
 ];
 
 
-// 1. Add up no of months.Add to a var
-// 2. Add up total gains / losses.Add to a var
-// 3.Average this total amount.Add to var.
-// 4. Find largest positive change in Array. Add to var.
-// Find largest negative change in first Array. Add to a var
-// 5. Use concatenation to output required Information.
 
+// The total number of months
 var totalMonths = finances.length;
-console.log(totalMonths);
-
 var amountTotal = 0;
-var onlyNumbers = []
 // An array with the monthly changes
-var monthlyChanges = [];
-// AN array with the changes in monthly
 var monthlyChangesArray = [];
+// The above array added up
 var monthlyChangesAmount = 0;
+var difference = 0;
+var net = 0;
+// Two vars used for if statement to work out smallest/largest
+var smallest = ["", 99999999999999999999999];
+var largest = ["", 0];
 
 for (var i = 0; i < finances.length; i++) {
     for (var j = 0; j < finances[i].length; j++) {
+
         if (typeof finances[i][j] !== 'string') {
-            onlyNumbers.push(finances[i][j])
-            console.log(finances[i][j]);
-            amountTotal = amountTotal + (finances[i][j]);
-
+            // This is the total amount of profits/losses
+            amountTotal = amountTotal + finances[i][j];
+            difference = finances[i][j] - net;
+            net = finances[i][j];
+            monthlyChangesArray.push(difference)
+            // Finds largest change
+            if (difference > largest[1]) {
+                largest = [finances[i][0], finances[i][1]];
+            }
+            // Finds smallest change
+            if (difference < smallest[1]) {
+                smallest = [finances[i][0], finances[i][1]];
+            }
         }
-
     }
-
 }
-
-var monthlyChangesAmount = finances[0][1];
-var difference;
-for (var i = 1; i < finances.length; i++) {
-    difference = finances[i][1] - finances[i - 1][1];
-    monthlyChangesAmount = monthlyChangesAmount + difference
+// Adds all changes
+for (var i = 0; i < monthlyChangesArray.length; i++) {
+    monthlyChangesAmount += monthlyChangesArray[i];
 }
+// Gets average of all changes
+var average = Math.round((monthlyChangesAmount / finances.length) * 100) / 100;
 
-for (var k = 1; k < onlyNumbers.length; k++) {
-    monthlyChanges.push(onlyNumbers[k] - onlyNumbers[k - 1]);
+// A var storing the output
+var output = (`Financial Analysis \n` +
+    `-----------------------\n` +
+    `Total Months: ${totalMonths} \n` +
+    `Total: $${amountTotal} \n` +
+    `Average Change: $${average} \n` +
+    `Greatest Increase in Profits: ${largest[0]} ($${largest[1]}) \n` +
+    `Greatest Decrease in Profits: ${smallest[0]} ($${smallest[1]})`);
 
-}
-
-// for (var m = 1; m < monthlyChanges.length; m++) {
-//     monthlyChangesArray.push(monthlyChanges[m] - monthlyChanges[m - 1]);
-//     monthlyChangesAmount = monthlyChangesAmount + (monthlyChangesArray[m]);
-
-// }
-
-
-console.log(totalMonths);
-console.log(onlyNumbers);
-console.log(amountTotal);
-console.log(monthlyChanges);
-console.log(monthlyChangesArray);
-console.log(monthlyChangesAmount / 86);
-console.log(Math.max(...monthlyChanges));
-console.log(Math.min(...monthlyChanges));
-var highestIndex = monthlyChanges.indexOf(1926159);
-console.log(highestIndex);
-var lowestIndex = monthlyChanges.indexOf(-2196167);
-console.log(lowestIndex);
-console.log(finances[1 + highestIndex]);
-console.log(finances[1 + lowestIndex]);
+console.log(output);
